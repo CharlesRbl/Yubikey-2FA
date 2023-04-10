@@ -28,3 +28,15 @@ Voici la commande :
 * Allow YubiKey serial number to be read using an API call (`-oserial-api-visible`)
 * Require touching YubiKey before issue response (`-ochal-btn-trig`) (optional)
 
+## Configuration du fichier /etc/ykfde.conf
+
+Le fichier fourni est prêt à l'emploi, néanmoins vous pouvez modifier certaines valeurs pour matcher avec vos préférences.  
+
+Si vous avez configuré un autre slot que le n°2, il faudra spécifier le slot dans le fichier de configuration. Pour cela il faut modifier la ligne `YKFDE_CHALLENGE_SLOT=`  
+  
+Les deux paramètres sur lequelles vous pouvez agir sont :  
+* `YKFDE_CRYPTSETUP_TRIALS=` Il configure le nombre de tentative possible.
+*  `YKFDE_CHALLENGE_YUBIKEY_INSERT_TIMEOUT=` Il configure le temps d'attente pour détecter la Yubikey. je recommande de laisser la valeur à 5s cela permet, dans le cas où vous n'avez pas la clé de pouvoir boot plus rapidement.  
+
+Une fois que les paramètres vous correspondent, il faut regénérer l'initramfs avec la commande :  
+`sudo mkinitcpio -P`
