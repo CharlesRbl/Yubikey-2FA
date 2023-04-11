@@ -40,3 +40,23 @@ Les deux paramètres sur lequelles vous pouvez agir sont :
 
 Une fois que les paramètres vous correspondent, il faut regénérer l'initramfs avec la commande :  
 `sudo mkinitcpio -P`
+
+## Configuration de la Yubikey sur un LUKS existant
+
+Pour configurer un mot de passe avec la Yubikey sur un LUKS déjà configuré, il faut utiliser la commande `ykfde-enroll` :  
+  
+`ykfde-enroll -d /dev/<disque> -s <slot_yubikey>`
+
+Pour tester le bon fonctionnement, faites la commande : `ykfde-open -d /dev/<disque>`
+  
+## Ajout du hook ykfde
+
+Maintenant que la configuration est terminée, il faut ajouter le hook `ykfde` dans votre fichier `/etc/mkinitcpio.conf`. Vous devez le placer avant le hook `encrypt`.  
+  
+Une fois votre fichier configuré, il faur regénérer votre initramfs avec la commande :  
+  
+`sudo mkinitcpio -P`  
+
+## Redémarrage
+
+Toutes les étapes pour configurer le déchiffrement de votre disque avec la yubikey sont terminées. Vous pouvez maintenant reboot votre PC et tester votre installation.
