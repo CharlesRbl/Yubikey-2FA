@@ -1,7 +1,7 @@
 # Yubikey-2FA
 Procédure pour paramétrer sa Yubikey pour le déchiffrement de son disque ainsi que les logins (sudo, session, ...) sous Linux
 
-# Mise en place du déchiffrement
+# Déchiffrement du disque avec la Yubikey
 ## Préparation
 
 Avant de commencer le paramétrage il est nécessaire d'installer le paquet **yubikey-full-disk-encryption** sous Arch Linux.  
@@ -60,3 +60,5 @@ Une fois votre fichier configuré, il faur regénérer votre initramfs avec la c
 ## Redémarrage
 
 Toutes les étapes pour configurer le déchiffrement de votre disque avec la yubikey sont terminées. Vous pouvez maintenant reboot votre PC et tester votre installation.
+
+# Configuration du PAM avec la Yubikey
