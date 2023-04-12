@@ -6,7 +6,9 @@ Procédure pour paramétrer sa Yubikey pour le déchiffrement de son disque ains
 
 Avant de commencer le paramétrage il est nécessaire d'installer le paquet **yubikey-full-disk-encryption** sous Arch Linux.  
   
-```sudo pacman -Syu yubikey-full-disk-encryption``` 
+```bash
+sudo pacman -Syu yubikey-full-disk-encryption
+``` 
   
 Pour les autres distros, le nom du paquet peut changer, il faudra se renseigner sur le site de Yubico pour le récupérer.
 > NB: il est possible de récupérer le paquet via GitHub.
@@ -18,7 +20,9 @@ Il va falloir configurer un slot de la Yubikey qui contiendra une clé secrète 
   
 Voici la commande :  
   
-`ykpersonalize -v -2 -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible -ochal-btn-trig`
+```bash
+ykpersonalize -v -2 -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible -ochal-btn-trig
+```
   
 * Verbose output (`-v`)
 * Use Slot 2 (`-2`)
@@ -39,15 +43,22 @@ Les deux paramètres sur lequelles vous pouvez agir sont :
 *  `YKFDE_CHALLENGE_YUBIKEY_INSERT_TIMEOUT=` Il configure le temps d'attente pour détecter la Yubikey. je recommande de laisser la valeur à 5s cela permet, dans le cas où vous n'avez pas la clé de pouvoir boot plus rapidement.  
 
 Une fois que les paramètres vous correspondent, il faut regénérer l'initramfs avec la commande :  
-`sudo mkinitcpio -P`
+```bash
+sudo mkinitcpio -P
+```
 
 ## Configuration de la Yubikey sur un LUKS existant
 
 Pour configurer un mot de passe avec la Yubikey sur un LUKS déjà configuré, il faut utiliser la commande `ykfde-enroll` :  
   
-`ykfde-enroll -d /dev/<disque> -s <slot_yubikey>`
+```
+ykfde-enroll -d /dev/<disque> -s <slot_yubikey>
+```
 
-Pour tester le bon fonctionnement, faites la commande : `ykfde-open -d /dev/<disque>`
+Pour tester le bon fonctionnement, faites la commande : 
+```
+ykfde-open -d /dev/<disque>
+```
   
 ## Ajout du hook ykfde
 
@@ -55,8 +66,10 @@ Maintenant que la configuration est terminée, il faut ajouter le hook `ykfde` d
   
 Une fois votre fichier configuré, il faur regénérer votre initramfs avec la commande :  
   
-`sudo mkinitcpio -P`  
-
+```
+sudo mkinitcpio -P
+```
+  
 ## Redémarrage
 
 Toutes les étapes pour configurer le déchiffrement de votre disque avec la yubikey sont terminées. Vous pouvez maintenant reboot votre PC et tester votre installation.
