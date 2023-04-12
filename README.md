@@ -6,7 +6,7 @@ Procédure pour paramétrer sa Yubikey pour le déchiffrement de son disque ains
 
 Avant de commencer le paramétrage il est nécessaire d'installer le paquet **yubikey-full-disk-encryption** sous Arch Linux.  
   
-`sudo pacman -Syu yubikey-full-disk-encryption`  
+```sudo pacman -Syu yubikey-full-disk-encryption``` 
   
 Pour les autres distros, le nom du paquet peut changer, il faudra se renseigner sur le site de Yubico pour le récupérer.
 > NB: il est possible de récupérer le paquet via GitHub.
